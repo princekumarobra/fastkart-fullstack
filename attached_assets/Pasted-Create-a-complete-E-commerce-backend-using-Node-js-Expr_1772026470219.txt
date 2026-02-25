@@ -1,0 +1,131 @@
+Create a complete E-commerce backend using Node.js, Express, and MongoDB for a store selling:
+
+- Mobile accessories
+- Cosmetics
+- Home & kitchen items
+
+The system must support 300+ products efficiently.
+
+----------------------------------
+FEATURE REQUIREMENTS
+----------------------------------
+
+1. Authentication System
+- User registration
+- User login
+- Password hashing using bcryptjs
+- JWT authentication
+- Role-based access (admin and user)
+
+2. Product System
+- Add product (admin only)
+- Edit product
+- Delete product
+- Get all products
+- Pagination (limit & page)
+- Search by name
+- Filter by category
+- Stock management
+- Bulk CSV upload for products (admin only)
+- Support 300+ products efficiently
+
+Product model fields:
+- name
+- description
+- price
+- category
+- image
+- stock
+- createdAt
+
+3. Cart System
+- Add to cart
+- Update quantity
+- Remove item
+- View cart
+
+Cart model:
+- userId
+- items (productId, quantity)
+
+4. Order System
+- Create order
+- Select payment method (COD or Online)
+- View user order history
+- Admin view all orders
+- Update order status
+
+Order model:
+- userId
+- items (productId, quantity, price)
+- totalAmount
+- paymentMethod (cod / online)
+- paymentStatus (pending / paid)
+- orderStatus (processing / shipped / delivered)
+- createdAt
+
+5. Payment Integration
+- Razorpay order creation API
+- Razorpay webhook verification
+- On successful payment → update order paymentStatus to "paid"
+- Use crypto to verify signature
+
+6. Admin Panel APIs
+- Admin login
+- Get all users
+- Get all orders
+- Get dashboard stats (total sales, total orders)
+- Approve and manage orders
+- Bulk upload products via CSV
+
+7. Security
+- JWT middleware
+- Admin-only route protection
+- Input validation
+- Error handling
+
+----------------------------------
+FOLDER STRUCTURE
+----------------------------------
+
+/server
+  /models
+  /routes
+  /controllers
+  /middleware
+  /utils
+  app.js
+
+----------------------------------
+DEPENDENCIES
+----------------------------------
+
+Use:
+- express
+- mongoose
+- bcryptjs
+- jsonwebtoken
+- dotenv
+- razorpay
+- crypto
+- multer (for CSV upload)
+- csv-parser
+
+----------------------------------
+ENV VARIABLES (.env)
+----------------------------------
+
+MONGO_URI=
+JWT_SECRET=
+RAZORPAY_KEY_ID=
+RAZORPAY_KEY_SECRET=
+
+----------------------------------
+OUTPUT REQUIRED
+----------------------------------
+
+- Complete working backend code
+- Example .env file
+- Example API requests
+- Instructions to run in Replit
+- Sample CSV file format
