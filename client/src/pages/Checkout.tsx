@@ -60,7 +60,7 @@ export default function Checkout() {
           key: "dummy_key", // Usually comes from env or API
           amount: Math.round(total * 100),
           currency: "INR",
-          name: "AURA Store",
+          name: "Fastkart Store",
           description: "Premium Purchase",
           order_id: orderRes.razorpayOrderId,
           handler: async function (response: any) {
