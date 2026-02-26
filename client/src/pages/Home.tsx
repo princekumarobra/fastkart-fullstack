@@ -1,4 +1,5 @@
 import { Navbar } from "@/components/layout/Navbar";
+import { Footer } from "@/components/layout/Footer";
 import { ProductCard } from "@/components/ProductCard";
 import { useProducts } from "@/hooks/use-products";
 import { Link } from "wouter";
@@ -9,13 +10,13 @@ export default function Home() {
   const { data, isLoading } = useProducts({ limit: 4 });
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background flex flex-col">
       <Navbar />
       
-      <main>
+      <main className="flex-1">
         {/* Hero Section */}
         <section className="relative overflow-hidden bg-foreground text-background py-24 sm:py-32">
-          {/* <!-- abstract elegant gradient background --> */}
+          {/* abstract elegant gradient background */}
           <div className="absolute inset-0 opacity-20 bg-[url('https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=2564&auto=format&fit=crop')] bg-cover bg-center mix-blend-overlay"></div>
           
           <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -110,6 +111,7 @@ export default function Home() {
           </div>
         </section>
       </main>
+      <Footer />
     </div>
   );
 }

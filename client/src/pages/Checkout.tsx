@@ -10,6 +10,7 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
 import { CreditCard, Truck, CheckCircle2 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { Input } from "@/components/ui/input";
 
 // Helper to load Razorpay script dynamically
 const loadRazorpayScript = () => {
@@ -36,6 +37,16 @@ export default function Checkout() {
   const [isProcessing, setIsProcessing] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
 
+  const [address, setAddress] = useState({
+    fullName: "",
+    phone: "",
+    street: "",
+    city: "",
+    state: "",
+    pincode: "",
+    dist: "" // Adding dist as requested
+  });
+
   const subtotal = cart?.items.reduce((acc, item) => {
     const p = productsData?.products.find(p => p._id === item.productId);
     return acc + ((p?.price || 0) * item.quantity);
@@ -43,9 +54,17 @@ export default function Checkout() {
   const total = subtotal + (subtotal * 0.1); // add 10% tax
 
   const handlePlaceOrder = async () => {
+    // Validate address
+    const requiredFields = ['fullName', 'phone', 'street', 'city', 'state', 'pincode', 'dist'];
+    const missingFields = requiredFields.filter(f => !address[f as keyof typeof address]);
+    if (missingFields.length > 0) {
+      toast({ variant: "destructive", title: "Address Required", description: "Please fill in all address fields before placing order." });
+      return;
+    }
+
     setIsProcessing(true);
     try {
-      const orderRes = await createOrder.mutateAsync({ paymentMethod });
+      const orderRes = await createOrder.mutateAsync({ paymentMethod, address });
       
       if (paymentMethod === "cod") {
         setIsSuccess(true);
@@ -118,9 +137,71 @@ export default function Checkout() {
         <h1 className="font-display text-4xl font-bold text-foreground mb-8">Checkout</h1>
         
         <div className="flex flex-col lg:flex-row gap-12">
-          {/* Left: Payment Method */}
-          <div className="flex-1">
-            <div className="bg-card rounded-3xl p-8 border border-border/50 shadow-sm mb-8">
+          {/* Left: Address & Payment Method */}
+          <div className="flex-1 space-y-8">
+            <div className="bg-card rounded-3xl p-8 border border-border/50 shadow-sm">
+              <h3 className="font-display text-2xl font-bold mb-6">Shipping Address</h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="md:col-span-2">
+                  <Label>Full Name</Label>
+                  <Input 
+                    value={address.fullName} 
+                    onChange={e => setAddress({...address, fullName: e.target.value})} 
+                    placeholder="John Doe"
+                  />
+                </div>
+                <div>
+                  <Label>Mobile Number</Label>
+                  <Input 
+                    value={address.phone} 
+                    onChange={e => setAddress({...address, phone: e.target.value})} 
+                    placeholder="10-digit mobile"
+                  />
+                </div>
+                <div>
+                  <Label>Full Address (Street/House)</Label>
+                  <Input 
+                    value={address.street} 
+                    onChange={e => setAddress({...address, street: e.target.value})} 
+                    placeholder="Apt, Street"
+                  />
+                </div>
+                <div>
+                  <Label>City</Label>
+                  <Input 
+                    value={address.city} 
+                    onChange={e => setAddress({...address, city: e.target.value})} 
+                    placeholder="City"
+                  />
+                </div>
+                <div>
+                  <Label>District</Label>
+                  <Input 
+                    value={address.dist} 
+                    onChange={e => setAddress({...address, dist: e.target.value})} 
+                    placeholder="District"
+                  />
+                </div>
+                <div>
+                  <Label>State</Label>
+                  <Input 
+                    value={address.state} 
+                    onChange={e => setAddress({...address, state: e.target.value})} 
+                    placeholder="State"
+                  />
+                </div>
+                <div>
+                  <Label>Pincode</Label>
+                  <Input 
+                    value={address.pincode} 
+                    onChange={e => setAddress({...address, pincode: e.target.value})} 
+                    placeholder="6-digit Pincode"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-card rounded-3xl p-8 border border-border/50 shadow-sm">
               <h3 className="font-display text-2xl font-bold mb-6">Payment Method</h3>
               <RadioGroup value={paymentMethod} onValueChange={(v: any) => setPaymentMethod(v)} className="space-y-4">
                 <Label htmlFor="online" className={`flex items-center gap-4 p-4 rounded-2xl border-2 cursor-pointer transition-all ${paymentMethod === 'online' ? 'border-primary bg-primary/5' : 'border-border hover:border-primary/50'}`}>

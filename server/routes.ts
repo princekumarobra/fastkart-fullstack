@@ -13,6 +13,7 @@ import { connectDB } from "./db";
 import { User } from "./models/User";
 import { Product } from "./models/Product";
 import { Cart } from "./models/Cart";
+import { Contact } from "./models/Contact";
 import { Order } from "./models/Order";
 import { protect, admin, AuthRequest } from "./middleware/auth";
 import { razorpay, verifyRazorpaySignature } from "./utils/razorpay";
@@ -269,6 +270,20 @@ export async function registerRoutes(httpServer: Server, app: Express): Promise<
   app.patch(api.orders.updateStatus.path, protect as any, admin as any, async (req: any, res: any) => {
     const order = await Order.findByIdAndUpdate(req.params.id, { orderStatus: req.body.orderStatus }, { new: true });
     res.json(order);
+  });
+
+  // Contact Route
+  app.post("/api/contacts", async (req, res) => {
+    try {
+      const { name, email, message } = req.body;
+      if (!name || !email || !message) {
+        return res.status(400).json({ message: "All fields are required" });
+      }
+      const contact = await Contact.create({ name, email, message });
+      res.status(201).json(contact);
+    } catch (err) {
+      res.status(500).json({ message: "Server Error" });
+    }
   });
 
   // Admin Routes

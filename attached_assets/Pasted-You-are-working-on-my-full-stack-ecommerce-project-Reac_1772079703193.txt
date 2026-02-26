@@ -1,0 +1,108 @@
+You are working on my full stack ecommerce project (React + Express + MongoDB).
+
+Brand Name: Fastkart Store
+Contact Email: fastkartupdate1@gmail.com
+Country: India
+Currency: INR
+
+I want you to do the following professionally:
+
+1️⃣ Create Legal Pages inside client/src/pages:
+
+- Disclaimer.tsx
+- PrivacyPolicy.tsx
+- RefundPolicy.tsx
+- ShippingPolicy.tsx
+- TermsConditions.tsx
+- RazorpayPolicy.tsx
+- Contact.tsx
+- About.tsx
+
+All pages must be properly formatted with headings, sections and professional ecommerce legal content suitable for India and Razorpay compliance.
+
+Include:
+
+PRIVACY POLICY:
+- Data collection
+- Payment processing via Razorpay
+- Cookies usage
+- Third-party services
+- Data protection
+
+REFUND POLICY:
+- 7 days return policy
+- Refund processed within 5-7 business days
+- No refund for damaged/misused items
+- COD refund via bank transfer
+
+RAZORPAY POLICY:
+- Secure payment via Razorpay
+- PCI-DSS compliant
+- No storage of card details
+- Refund timeline
+- Chargeback handling
+
+SHIPPING POLICY:
+- Orders processed within 1-2 business days
+- Delivery time 3-7 business days across India
+- Delays due to courier/weather
+
+DISCLAIMER:
+- Product colors may vary
+- No guarantee of exact appearance
+- Liability limitation
+
+CONTACT PAGE:
+- Email: fastkartupdate1@gmail.com
+- Contact form (Name, Email, Message)
+- Save messages to MongoDB collection: contacts
+
+ABOUT PAGE:
+- Brand: Fastkart Store
+- All India ecommerce store
+- Affordable quality products
+- Customer satisfaction focus
+
+2️⃣ Add routes in App.tsx:
+
+/privacy-policy
+/refund-policy
+/shipping-policy
+/terms
+/disclaimer
+/razorpay-policy
+/contact
+/about
+
+3️⃣ Update Footer to include links to all policies.
+
+4️⃣ Modify Checkout.tsx:
+Make Address Mandatory before placing order.
+Add these required fields:
+
+- Full Name
+- Mobile Number
+- Full Address
+- City
+- State
+- Pincode
+
+Do not allow order submission without filling these fields.
+
+5️⃣ Update Order model in backend:
+
+Add address object:
+
+address: {
+  fullName: String,
+  phone: String,
+  street: String,
+  city: String,
+  state: String,
+  pincode: String
+}
+
+6️⃣ Make sure admin panel shows full address details in Orders page.
+
+Make everything clean, responsive and professional.
+Do not break existing functionality.

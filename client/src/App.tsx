@@ -15,6 +15,16 @@ import Cart from "@/pages/Cart";
 import Checkout from "@/pages/Checkout";
 import Orders from "@/pages/Orders";
 
+// Legal Pages
+import PrivacyPolicy from "@/pages/legal/PrivacyPolicy";
+import RefundPolicy from "@/pages/legal/RefundPolicy";
+import ShippingPolicy from "@/pages/legal/ShippingPolicy";
+import TermsConditions from "@/pages/legal/TermsConditions";
+import Disclaimer from "@/pages/legal/Disclaimer";
+import RazorpayPolicy from "@/pages/legal/RazorpayPolicy";
+import Contact from "@/pages/legal/Contact";
+import About from "@/pages/legal/About";
+
 // Admin Pages
 import AdminDashboard from "@/pages/admin/Dashboard";
 import AdminProducts from "@/pages/admin/Products";
@@ -56,6 +66,16 @@ function Router() {
       <Route path="/orders">
         {() => <ProtectedRoute component={Orders} />}
       </Route>
+
+      {/* Legal & Static Pages */}
+      <Route path="/privacy-policy" component={PrivacyPolicy} />
+      <Route path="/refund-policy" component={RefundPolicy} />
+      <Route path="/shipping-policy" component={ShippingPolicy} />
+      <Route path="/terms" component={TermsConditions} />
+      <Route path="/disclaimer" component={Disclaimer} />
+      <Route path="/razorpay-policy" component={RazorpayPolicy} />
+      <Route path="/contact" component={Contact} />
+      <Route path="/about" component={About} />
 
       {/* Admin Routes */}
       <Route path="/admin">

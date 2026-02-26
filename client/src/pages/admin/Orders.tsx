@@ -22,6 +22,7 @@ export default function AdminOrders() {
             <thead>
               <tr className="bg-secondary/50 border-b border-border text-sm text-muted-foreground font-medium uppercase tracking-wider">
                 <th className="p-4">Order ID</th>
+                <th className="p-4">Customer & Address</th>
                 <th className="p-4">Date</th>
                 <th className="p-4">Total</th>
                 <th className="p-4">Payment</th>
@@ -30,10 +31,19 @@ export default function AdminOrders() {
             </thead>
             <tbody>
               {isLoading ? (
-                <tr><td colSpan={5} className="p-8 text-center text-muted-foreground">Loading...</td></tr>
+                <tr><td colSpan={6} className="p-8 text-center text-muted-foreground">Loading...</td></tr>
               ) : orders?.map(order => (
                 <tr key={order._id} className="border-b border-border/50 last:border-0 hover:bg-secondary/30 transition-colors">
                   <td className="p-4 font-mono text-sm">{order._id.slice(-8).toUpperCase()}</td>
+                  <td className="p-4">
+                    <div className="text-sm">
+                      <p className="font-bold">{order.address?.fullName || order.userId?.name}</p>
+                      <p className="text-muted-foreground text-xs">
+                        {order.address ? `${order.address.street}, ${order.address.city}, ${order.address.dist || ''}, ${order.address.state} - ${order.address.pincode}` : 'No address'}
+                      </p>
+                      <p className="text-muted-foreground text-xs">{order.address?.phone || 'No phone'}</p>
+                    </div>
+                  </td>
                   <td className="p-4">{new Date(order.createdAt).toLocaleDateString()}</td>
                   <td className="p-4 font-bold">${order.totalAmount.toFixed(2)}</td>
                   <td className="p-4">

@@ -10,6 +10,15 @@ const orderSchema = new mongoose.Schema({
   userId: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
   items: [orderItemSchema],
   totalAmount: { type: Number, required: true },
+  address: {
+    fullName: { type: String, required: true },
+    phone: { type: String, required: true },
+    street: { type: String, required: true },
+    city: { type: String, required: true },
+    dist: { type: String, required: true },
+    state: { type: String, required: true },
+    pincode: { type: String, required: true }
+  },
   paymentMethod: { type: String, enum: ["cod", "online"], required: true },
   paymentStatus: { type: String, enum: ["pending", "paid"], default: "pending" },
   orderStatus: { type: String, enum: ["processing", "shipped", "delivered"], default: "processing" },

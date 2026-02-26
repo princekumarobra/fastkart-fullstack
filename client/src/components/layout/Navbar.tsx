@@ -1,5 +1,5 @@
 import { Link, useLocation } from "wouter";
-import { ShoppingBag, User, LogOut, LayoutDashboard, Menu, X } from "lucide-react";
+import { ShoppingBag, User, LogOut, LayoutDashboard, Menu, X, Info, Mail } from "lucide-react";
 import { useAuthStore } from "@/hooks/use-auth";
 import { useCart } from "@/hooks/use-cart";
 import { useState } from "react";
@@ -29,11 +29,11 @@ export function Navbar() {
               <Link href="/shop" className={`text-sm font-medium transition-colors hover:text-primary ${location === '/shop' ? 'text-primary' : 'text-muted-foreground'}`}>
                 Shop All
               </Link>
-              <Link href="/shop?category=Cosmetics" className={`text-sm font-medium transition-colors hover:text-primary ${location.includes('Cosmetics') ? 'text-primary' : 'text-muted-foreground'}`}>
-                Cosmetics
+              <Link href="/about" className={`text-sm font-medium transition-colors hover:text-primary ${location === '/about' ? 'text-primary' : 'text-muted-foreground'}`}>
+                About
               </Link>
-              <Link href="/shop?category=Mobile accessories" className={`text-sm font-medium transition-colors hover:text-primary ${location.includes('Mobile') ? 'text-primary' : 'text-muted-foreground'}`}>
-                Tech
+              <Link href="/contact" className={`text-sm font-medium transition-colors hover:text-primary ${location === '/contact' ? 'text-primary' : 'text-muted-foreground'}`}>
+                Contact
               </Link>
             </nav>
           </div>
@@ -89,8 +89,8 @@ export function Navbar() {
       {mobileMenuOpen && (
         <div className="md:hidden border-t border-border bg-background px-4 py-4 space-y-4">
           <Link href="/shop" className="block text-sm font-medium text-foreground">Shop All</Link>
-          <Link href="/shop?category=Cosmetics" className="block text-sm font-medium text-foreground">Cosmetics</Link>
-          <Link href="/shop?category=Mobile accessories" className="block text-sm font-medium text-foreground">Tech</Link>
+          <Link href="/about" className="block text-sm font-medium text-foreground">About Us</Link>
+          <Link href="/contact" className="block text-sm font-medium text-foreground">Contact Us</Link>
           {user && (
             <>
               <Link href="/orders" className="block text-sm font-medium text-foreground">My Orders</Link>
