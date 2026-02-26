@@ -42,7 +42,7 @@ export default function Auth() {
         <div className="absolute inset-0 opacity-40 bg-[url('https://images.unsplash.com/photo-1490481651871-ab68de25d43d?q=80&w=2564&auto=format&fit=crop')] bg-cover bg-center"></div>
         <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent"></div>
         <div className="relative z-10 mt-auto p-12">
-          <h1 className="font-display text-4xl font-bold text-background mb-4">AURA</h1>
+          <h1 className="font-display text-4xl font-bold text-background mb-4">Fastkart Store</h1>
           <p className="text-xl text-background/80 max-w-md">Elevate your everyday with our curated selection of premium products.</p>
         </div>
       </div>

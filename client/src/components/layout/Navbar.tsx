@@ -22,7 +22,7 @@ export function Navbar() {
               <div className="bg-primary text-primary-foreground p-1.5 rounded-lg">
                 <ShoppingBag className="w-5 h-5" />
               </div>
-              <span className="font-display font-bold text-xl tracking-tight">AURA</span>
+              <span className="font-display font-bold text-xl tracking-tight">Fastkart Store</span>
             </Link>
             
             <nav className="hidden md:flex gap-6">
