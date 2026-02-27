@@ -3,6 +3,9 @@ import { registerRoutes } from "./routes";
 import { serveStatic } from "./static";
 import { createServer } from "http";
 
+import cors from "cors"; // Naya import
+// ... baaki imports
+
 const app = express();
 const httpServer = createServer(app);
 
@@ -21,6 +24,10 @@ app.use(
 );
 
 app.use(express.urlencoded({ extended: false }));
+app.use(cors({
+    origin: process.env.FRONTEND_URL, // Render se set kiya hua URL
+    credentials: true 
+}));
 
 export function log(message: string, source = "express") {
   const formattedTime = new Date().toLocaleTimeString("en-US", {
